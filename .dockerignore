@@ -1,4 +1,5 @@
 .bundle
+enterprise
 .env
 .env.*
 docker-compose.*

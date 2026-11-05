@@ -13,6 +13,8 @@ class NotificationSubscriptionBuilder
   def identifier
     @identifier ||= params[:subscription_attributes][:endpoint] if params[:subscription_type] == 'browser_push'
     @identifier ||= params[:subscription_attributes][:device_id] if params[:subscription_type] == 'fcm'
+    # Keep the VoIP subscription separate from the FCM subscription of the same iOS device.
+    @identifier ||= "voip:#{params[:subscription_attributes][:device_id]}" if params[:subscription_type] == 'apns_voip'
     @identifier
   end
 
